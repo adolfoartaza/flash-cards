@@ -12,6 +12,15 @@ app.controller('MainController', function ($scope, FlashCardsFactory) {
 	// is loaded, the cards get loaded as well.
 	$scope.getAllCards();
 
+	$scope.categories = [ 'MongoDB', 'Express', 'Angular', 'Node' ];
+
+	
+	$scope.getCategoryCards = function (category) {
+		FlashCardsFactory.getFlashCards(category).then(function (cards) {
+			$scope.flashCards = cards;
+		});
+	}
+	
 	$scope.answerQuestion = function (answer, flashCard) {
 		if (!flashCard.answered) {
 			flashCard.answered = true;
